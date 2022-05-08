@@ -91,14 +91,6 @@ public class Fase extends JPanel implements ActionListener {
 			}
 			
 			graficos.drawImage(player.getImagem(), player.getX(), player.getY(), this);
-			// System.out.println(pontos);
-                        
-			/*List<Tiro> tiros = player.getTiros();
-			for (int i = 0; i < tiros.size(); i++) {
-				Tiro m = tiros.get(i);
-				m.load();
-				graficos.drawImage(m.getImagem(), m.getX(), m.getY(), this);
-			}*/
 			
 			for (int o = 0;o < enemy1.size(); o ++) {
 				Enemy1 in = enemy1.get(o); 
@@ -132,20 +124,6 @@ public class Fase extends JPanel implements ActionListener {
                             tempEnemy1.setVisivel(false);
 			}
 		}
-		
-		/*List<Tiro> tiros = player.getTiros();
-		for(int tiro = 0; tiro < tiros.size(); tiro++) {
-			Tiro tempTiro = tiros.get(tiro);
-			formaTiro = tempTiro.getBounds();
-			for(int o = 0; o < enemy1.size(); o++) {
-				Enemy1 tempEnemy1 = enemy1.get(o);
-				formaEnemy1 = tempEnemy1.getBounds();
-				if(formaTiro.intersects(formaEnemy1)) {
-					tempEnemy1.setVisivel(false);
-					tempTiro.setVisivel(false);
-				}
-			}
-		}*/
 	}
 
 	@Override
@@ -161,23 +139,6 @@ public class Fase extends JPanel implements ActionListener {
 					stars.remove(s);
 				}
 			}
-		
-		
-		/*List<Tiro> tiros = player.getTiros();
-		for (int i = 0; i < tiros.size(); i++) {
-			Tiro m = tiros.get(i);
-			if (m.isVisivel()) {
-				m.update();
-				if(player.isTurbo()) {
-					tiros.get(i).setVELOCIDADE(-1);;
-				}
-				if(player.isTurbo() == false) {
-					tiros.get(i).setVELOCIDADE(+3);;
-				}
-			} else {
-				tiros.remove(i);
-			}
-		}*/
 
 		for (int o = 0;o < enemy1.size(); o ++) {
 			Enemy1 in = enemy1.get(o);

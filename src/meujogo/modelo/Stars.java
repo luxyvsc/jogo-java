@@ -12,7 +12,6 @@ public class Stars {
 	private int largura, altura;
 	private boolean isVisivel;
 	
-	//private static final int LARGURA = 938;
 	private static int VELOCIDADE = 6;
 	
 	public Stars(int x, int y) {

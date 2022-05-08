@@ -15,7 +15,6 @@ public class Player implements ActionListener {
 	private int dx, dy;
 	private Image imagem;
 	private int altura, largura;
-	// private List<Tiro> tiros;
 	private boolean isVisivel;
 	private boolean isTurbo;
 	private Timer timer;
@@ -25,8 +24,6 @@ public class Player implements ActionListener {
 		this.y = 300;
 		isVisivel = true;
 		isTurbo = false;
-
-		// tiros = new ArrayList<Tiro>();
 
 		timer = new Timer(3000, this);
 		timer.start();
@@ -60,13 +57,9 @@ public class Player implements ActionListener {
 		
 	}
 
-	/*public void tiroSimples() {
-		this.tiros.add(new Tiro(x + largura, y + (altura / 2)));
-	}*/
-
 	public void turbo() {
 		isTurbo = true;
-		ImageIcon referencia = new ImageIcon("res\\naveturbo.png");
+		ImageIcon referencia = new ImageIcon("res\\camilo.gif");
 		imagem = referencia.getImage();
 	}
 
@@ -81,9 +74,6 @@ public class Player implements ActionListener {
 			turbo();
 		}
 
-		/*if (codigo == KeyEvent.VK_F) {
-			tiroSimples();
-		}*/
 		if (codigo == KeyEvent.VK_S) {
 			dy = 4;
 		}
@@ -145,10 +135,6 @@ public class Player implements ActionListener {
 	public Image getImagem() {
 		return imagem;
 	}
-
-	/*public List<Tiro> getTiros() {
-		return tiros;
-	}*/
 
 	public boolean isTurbo() {
 		return isTurbo;
