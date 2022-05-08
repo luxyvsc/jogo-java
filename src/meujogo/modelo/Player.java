@@ -24,7 +24,7 @@ public class Player implements ActionListener {
 
 	public Player() {
 		this.x = 100;
-		this.y = 100;
+		this.y = 300;
 		isVisivel = true;
 		isTurbo = false;
 
@@ -49,7 +49,7 @@ public class Player implements ActionListener {
 	}
 
 	public void load() {
-		ImageIcon referencia = new ImageIcon("res\\spaceship2.png");
+		ImageIcon referencia = new ImageIcon("res\\spaceship2.gif");
 		imagem = referencia.getImage();
 
 		altura = imagem.getHeight(null);
@@ -61,9 +61,9 @@ public class Player implements ActionListener {
 		y += dy;
 	}
 
-	public void tiroSimples() {
+	/*public void tiroSimples() {
 		this.tiros.add(new Tiro(x + largura, y + (altura / 2)));
-	}
+	}*/
 
 	public void turbo() {
 		isTurbo = true;
@@ -82,9 +82,9 @@ public class Player implements ActionListener {
 			turbo();
 		}
 
-		if (codigo == KeyEvent.VK_F) {
+		/*if (codigo == KeyEvent.VK_F) {
 			tiroSimples();
-		}
+		}*/
 
 		if (codigo == KeyEvent.VK_W) {
 			dy = -4;
@@ -142,9 +142,9 @@ public class Player implements ActionListener {
 		return imagem;
 	}
 
-	public List<Tiro> getTiros() {
+	/*public List<Tiro> getTiros() {
 		return tiros;
-	}
+	}*/
 
 	public boolean isTurbo() {
 		return isTurbo;

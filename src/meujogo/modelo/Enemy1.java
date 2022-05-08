@@ -12,7 +12,7 @@ public class Enemy1 {
 	private int largura, altura;
 	private boolean isVisivel;
 	
-	//private static final int LARGURA = 938;
+	private static final int LARGURA = 0;
 	private static int VELOCIDADE = 6;
 	
 	public Enemy1(int x, int y) {
@@ -22,7 +22,7 @@ public class Enemy1 {
 	}
 	
 	public void load() {
-		ImageIcon referencia = new ImageIcon("res\\enemy1.png");
+		ImageIcon referencia = new ImageIcon("res\\lixo.png");
 		imagem = referencia.getImage();
 		
 		this.largura = imagem.getWidth(null);
@@ -31,9 +31,10 @@ public class Enemy1 {
 	
 	public void update() {
 		this.x -= VELOCIDADE;
-		//if(this.x > LARGURA) {
-		//	isVisivel = false;
-		//}
+		if(this.x < LARGURA) {
+			isVisivel = false;
+                        // Set game over <--s
+                }
 	}
 	
 	public Rectangle getBounds() {
