@@ -5,8 +5,6 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
@@ -17,7 +15,7 @@ public class Player implements ActionListener {
 	private int dx, dy;
 	private Image imagem;
 	private int altura, largura;
-	private List<Tiro> tiros;
+	// private List<Tiro> tiros;
 	private boolean isVisivel;
 	private boolean isTurbo;
 	private Timer timer;
@@ -28,7 +26,7 @@ public class Player implements ActionListener {
 		isVisivel = true;
 		isTurbo = false;
 
-		tiros = new ArrayList<Tiro>();
+		// tiros = new ArrayList<Tiro>();
 
 		timer = new Timer(3000, this);
 		timer.start();
@@ -59,6 +57,7 @@ public class Player implements ActionListener {
 	public void update() {
 		x += dx;
 		y += dy;
+		
 	}
 
 	/*public void tiroSimples() {
@@ -85,18 +84,23 @@ public class Player implements ActionListener {
 		/*if (codigo == KeyEvent.VK_F) {
 			tiroSimples();
 		}*/
-
-		if (codigo == KeyEvent.VK_W) {
-			dy = -4;
-		}
 		if (codigo == KeyEvent.VK_S) {
 			dy = 4;
 		}
 		if (codigo == KeyEvent.VK_A) {
 			dx = -4;
 		}
+		
 		if (codigo == KeyEvent.VK_D) {
 			dx = 4;
+		}
+		if(codigo == KeyEvent.VK_W && World.isFree(x, y)) {
+			dy = -4;
+		}else if(World.isFree(x, y) == false) {
+			dy = 0;
+			if (codigo == KeyEvent.VK_S) {
+				dy = 4;
+			}
 		}
 	}
 

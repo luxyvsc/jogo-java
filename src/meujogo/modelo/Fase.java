@@ -12,8 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.Timer;
+import java.awt.Color;
 
 public class Fase extends JPanel implements ActionListener {
 
@@ -22,13 +25,15 @@ public class Fase extends JPanel implements ActionListener {
 	private Timer timer;
 	private List<Enemy1> enemy1;
 	private List<Stars> stars;
-	private boolean emJogo;
+	public static boolean emJogo;
+	private boolean win = false;
 	public int pontos = 0;
+	public World world;
 
 	public Fase() {
 		setFocusable(true);
 		setDoubleBuffered(true);
-
+		world = new World();
 		ImageIcon referencia = new ImageIcon("res\\Blackground.gif");
 		fundo = referencia.getImage();
 
@@ -69,17 +74,24 @@ public class Fase extends JPanel implements ActionListener {
 
 	public void paint(Graphics g) {
 		Graphics2D graficos = (Graphics2D) g;
-		if(emJogo == true) {
+		if(emJogo == true && win == false) {
 			graficos.drawImage(fundo, 0, 0, null);
+
+			g.setColor(Color.WHITE);
 			
+			g.drawString("Lixos: "+ pontos, 75, 75);
 			for (int s = 0; s < stars.size(); s++) {
 				Stars S = stars.get(s);
 				S.load();
 				graficos.drawImage(S.getImagem(), S.getX(), S.getY(), this);
 			}
+
+			if(pontos == 50){
+				win = true;
+			}
 			
 			graficos.drawImage(player.getImagem(), player.getX(), player.getY(), this);
-			System.out.println(pontos);
+			// System.out.println(pontos);
                         
 			/*List<Tiro> tiros = player.getTiros();
 			for (int i = 0; i < tiros.size(); i++) {
@@ -93,10 +105,16 @@ public class Fase extends JPanel implements ActionListener {
 				in.load();
 				graficos.drawImage(in.getImagem(), in.getX(), in.getY(), this);
 			}
-		}else {
+		}
+		if(emJogo == false) {
 			graficos.drawImage(fundo, 0, 0, null);
 			ImageIcon fimJogo = new ImageIcon("res\\lixowin.png");
-			graficos.drawImage(fimJogo.getImage(), 88, 40, null);
+			graficos.drawImage(fimJogo.getImage(), 0, 0, null);
+		}
+		if(win == true) {
+			graficos.drawImage(fundo, 0, 0, null);
+			ImageIcon venceu = new ImageIcon("res\\win.jpeg");
+			graficos.drawImage(venceu.getImage(), 0, -20, null);
 		}
 
 		g.dispose();
@@ -105,7 +123,6 @@ public class Fase extends JPanel implements ActionListener {
 	public void checarColisoes() {
 		Rectangle formaNave = player.getBounds();
 		Rectangle formaEnemy1;
-		Rectangle formaTiro;
 		
 		for(int i = 0; i < enemy1.size(); i++) {
 			Enemy1 tempEnemy1 = enemy1.get(i);
@@ -134,13 +151,6 @@ public class Fase extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		player.update(); 
-		if(player.isTurbo()) {
-			timer.setDelay(1);
-		}
-		
-		if(player.isTurbo() == false) {
-			timer.setDelay(5);
-		}
 		
 		
 		for(int s = 0; s < stars.size(); s++) {

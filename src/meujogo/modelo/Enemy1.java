@@ -33,8 +33,8 @@ public class Enemy1 {
 		this.x -= VELOCIDADE;
 		if(this.x < LARGURA) {
 			isVisivel = false;
-                        // Set game over <--s
-                }
+            Fase.emJogo = false;    
+        }
 	}
 	
 	public Rectangle getBounds() {
